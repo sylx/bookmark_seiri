@@ -1,23 +1,31 @@
 <script setup>
 import { ref } from 'vue'
+import Treeselect from 'vue3-treeselect'
+import 'vue3-treeselect/dist/vue3-treeselect.css'
+const src=ref(null)
+const trg=ref(null)
 
-const crx = ref('create-chrome-ext')
 </script>
 
 <template>
   <main>
     <h3>ブックマークを整理</h3>
-
-    <h6>v 0.0.0</h6>
-
-    <a href="https://www.npmjs.com/package/create-chrome-ext" target="_blank">Power by {{ crx }}</a>
+    <dl class="form">
+      <dt>移動元</dt>
+      <dd><Treeselect v-model="src" :multiple="false" :options="{}" /></dd>
+      <dt>移動先</dt>
+      <dd><Treeselect v-model="trg" :multiple="false" :options="{}" /></dd>
+      <dt>移動先パス</dt>
+      <dd><input type="text"></dd>
+    </dl>
+    <button>実行</button>
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 main {
   text-align: center;
-  padding: 1em;
+  padding: 0 1em;
   margin: 0 auto;
 }
 
@@ -27,7 +35,7 @@ h3 {
   font-size: 1.5rem;
   font-weight: 200;
   line-height: 1.2rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
 }
 
 h6 {
@@ -41,6 +49,23 @@ a {
   margin: 0.5rem;
   color: #cccccc;
   text-decoration: none;
+}
+
+dl.form {
+  display: grid;
+  grid-template: auto / 5em 1fr;
+  row-gap: 1em;
+  text-align: left;
+  align-items: center;
+  dt {
+    grid-column: 1;
+  }
+  dd {
+    grid-column: 2;
+  }
+  input {
+    padding: 8px;
+  }
 }
 
 @media (min-width: 480px) {
