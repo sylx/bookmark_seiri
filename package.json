@@ -21,8 +21,10 @@
     "fmt": "prettier --write '**/*.{vue,js,json,css,scss,md}'"
   },
   "dependencies": {
-    "vue": "^3.2.37",
-    "vue3-treeselect": "^0.1.10"
+    "dayjs": "^1.11.5",
+    "highlight.js": "^11.6.0",
+    "naive-ui": "^2.33.5",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.12",
@@ -30,6 +32,8 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-vue-components": "^0.22.8",
     "vite": "^2.9.13"
   }
 }

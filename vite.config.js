@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 import { crx } from '@crxjs/vite-plugin'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 import manifest from './src/manifest.js'
 
@@ -18,6 +21,24 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [crx({ manifest }), vue()],
+    plugins: [
+      crx({ manifest }), vue(),
+      AutoImport({
+        imports: [
+          'vue',
+          {
+            'naive-ui': [
+              'useDialog',
+              'useMessage',
+              'useNotification',
+              'useLoadingBar'
+            ]
+          }
+        ]
+      }),
+      Components({
+        resolvers: [NaiveUiResolver()]
+      })
+    ],
   }
 })
