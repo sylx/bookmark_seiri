@@ -22,7 +22,6 @@ onMounted(async () => {
 async function execMoveBookmarks(src_folder, target_folder, folder_format) {
   const all = await BookmarkTools.getBookmarks(src_folder, true)
   const exists = await BookmarkTools.getBookmarks(target_folder, false)
-  let max_index = _.max(exists.map(n=> n.index)) ?? -1
   const bookmarks = all.filter((n) => BookmarkTools.isLeaf(n))
 
   const existsFolders = {}
@@ -41,8 +40,7 @@ async function execMoveBookmarks(src_folder, target_folder, folder_format) {
       if (folder_name && !existsFolders[folder_name]) {
         const new_folder = await chrome.bookmarks.create({
           parentId: target_folder,
-          title: folder_name,
-          index: ++max_index,
+          title: folder_name
         })
         existsFolders[folder_name] = new_folder
       }
